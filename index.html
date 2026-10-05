@@ -1,0 +1,98 @@
+<!-- ================= HOME PAGE (index.html) ================= -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css" />
+  <title>Expense Tracker - Home</title>
+</head>
+
+<body>
+  <div class="background--image">
+  </div>
+
+
+  <div class="header">
+    <h3>Expenses Tracker</h3>
+    <nav>
+      <ul class="nav_items">
+        <li class="nav_item"><a href="">🔔</a></li>
+        <li class="nav_item mobile"><a href="">👤</a></li>
+        <li class="nav_item desk_top"><a href="">Login</a></li>
+        <li class="nav_item desk_top"><a href="">Sign-Up</a></li>
+      </ul>
+    </nav>
+  </div>
+
+
+
+  <main>
+
+    <div class="container">
+      <h2>💰 All Transactions</h2>
+      <h3 id="balance">₦0</h3>
+      <input id="desc" placeholder="Description" />
+      <input id="amount" type="number" placeholder="Amount" />
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button onclick="addTransaction()">Add</button>
+      <section class="list__wrapper">
+        <div id="list"></div>
+      </section>
+    </div>
+  </main>
+
+
+  <div class="footer_nav">
+    <nav>
+      <ul class="footer_nav--items">
+        <li class="footer_nav--item">
+          <a href="income.html">Income</a>
+        </li>
+
+        <li class="footer_nav--item">
+          <a href="expenses.html">Expense</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <script>
+
+
+
+
+
+    // const className = "Vic"
+    // let dataTypess = {
+    //   name: "Dev_Presh",
+    //   age: "109",
+    //   lastName: null,
+    //   cal: (yearOfBirth) => {
+
+    //     return 2026 - yearOfBirth
+    //   }
+    // }
+
+    // console.log(dataTypess.cal(1856));
+    // // console.log(!dataTypess.lastName && typeof dataTypess.age == String);
+
+
+    // const age = 10 + dataTypess.cal(1997)
+    // console.log("🚀 ~ age:", age)
+
+
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    function save() {
+      localStorage.setItem("transactions", JSON.stringify(transactions));
+    }
+
+  </script>
+</body>
+
+</html>

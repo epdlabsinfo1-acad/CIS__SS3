@@ -64,34 +64,40 @@
   <script>
 
 
-
-
-
-    // const className = "Vic"
-    // let dataTypess = {
-    //   name: "Dev_Presh",
-    //   age: "109",
-    //   lastName: null,
-    //   cal: (yearOfBirth) => {
-
-    //     return 2026 - yearOfBirth
-    //   }
-    // }
-
-    // console.log(dataTypess.cal(1856));
-    // // console.log(!dataTypess.lastName && typeof dataTypess.age == String);
-
-
-    // const age = 10 + dataTypess.cal(1997)
-    // console.log("🚀 ~ age:", age)
-
-
     let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
     function save() {
       localStorage.setItem("transactions", JSON.stringify(transactions));
     }
 
+    function addTransaction() {
+      const desc = document.getElementById("desc").value;
+      const amount = parseFloat(document.getElementById("amount").value);
+      const type = document.getElementById("type").value;
+      if (!desc || isNaN(amount)) return alert("Invalid");
+      transactions.push({ id: Date.now(), desc, amount, type });
+      save();
+      render();
+    }
+
+
+
+
+    function render() {
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+      let balance = 0;
+      transactions.forEach((t) => {
+        balance += t.type === "income" ? t.amount : -t.amount;
+        list.innerHTML += `<div class="list-item">
+<span>${t.desc} - ₦${t.amount}</span>
+<button class="delete" onclick="deleteTransaction(${t.id})">Delete</button>
+</div>`;
+      });
+      document.getElementById("balance").innerText = "₦" + balance;
+    }
+
+    render();
   </script>
 </body>
 
